@@ -7,5 +7,12 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true
   console.log('Connected to MongoDB server');
   const db = client.db('TodoApp');
 
-  client.close();
+  // deleteMany
+  db.collection('Todos').findOneAndDelete({ text: 'LEAVE THE EARTH D:' }).then((res) => {
+    console.log(res);
+  }, (err) => {
+    console.log('Could not delete data, ' + err);
+  });
+
+  // client.close();
 });
